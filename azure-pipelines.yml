@@ -10,9 +10,9 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '682ebf73-2c08-420a-b590-dc96c1674453'
+  dockerRegistryServiceConnection: 'dockertest1'
   imageRepository: 'miezurepipelinesjavascriptdocker'
-  containerRegistry: 'miezurecontainerregistry.azurecr.io'
+  containerRegistry: 'miezureacrtest0.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/app/Dockerfile'
   tag: '$(Build.BuildId)'
 
