@@ -72,9 +72,8 @@ stages:
       inputs:
         script: |
             trivy image --exit-code 0 --severity LOW,MEDIUM $(containerRegistry)/$(imageRepository):$(tag)
+            trivy image --exit-code 1 --severity HIGH,CRITICAL $(containerRegistry)/$(imageRepository):$(tag)
 #                   trivy image --exit-code 0 --severity LOW,MEDIUM $(containerRegistry)/$(imageRepository):$(tag) > low-med.txt
-#           trivy image --exit-code 1 --severity HIGH,CRITICAL $(containerRegistry)/$(imageRepository):$(tag) > high-critical.txt
-   
 # #            trivy image --exit-code 1 --severity HIGH,CRITICAL $(imageRepository):$(tag)
 
     - task: Docker@2
