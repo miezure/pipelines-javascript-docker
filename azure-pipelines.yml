@@ -10,7 +10,8 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'docker_acr0'
+  dockerRegistryServiceConnection: 'docker_hub0'
+  acrServiceConnection: 'docker_acr0'
   imageRepository: 'test0/miezurepipelinesjavascriptdocker'
   containerRegistry: 'miezure240710.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/app/Dockerfile'
@@ -75,7 +76,7 @@ stages:
 
     - task: Docker@2
       inputs:
-        containerRegistry: $(dockerRegistryServiceConnection)
+        containerRegistry: $(acrServiceConnection)
         repository: '$(imageRepository)'
         command: 'push'
         tags: '$(tag)'
