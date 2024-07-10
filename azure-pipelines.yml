@@ -11,8 +11,8 @@ resources:
 variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: 'docker_acr0'
-  imageRepository: 'miezurepipelinesjavascriptdocker'
-  containerRegistry: 'miezureacrtest0.azurecr.io'
+  imageRepository: 'miezure240710/miezurepipelinesjavascriptdocker'
+  containerRegistry: 'miezure240710.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/app/Dockerfile'
 #  tag: '$(Build.BuildId)'
   trivyVersion: 0.9.2
