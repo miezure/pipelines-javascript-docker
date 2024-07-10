@@ -11,7 +11,7 @@ resources:
 variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: 'docker_acr0'
-  imageRepository: 'miezure240710/miezurepipelinesjavascriptdocker'
+  imageRepository: 'test0/miezurepipelinesjavascriptdocker'
   containerRegistry: 'miezure240710.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/app/Dockerfile'
 #  tag: '$(Build.BuildId)'
