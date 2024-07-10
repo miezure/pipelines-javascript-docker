@@ -12,7 +12,7 @@ variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: 'docker_hub0'
   acrServiceConnection: 'docker_acr0'
-  imageRepository: 'test0/miezurepipelinesjavascriptdocker'
+  imageRepository: 'miezurepipelinesjavascriptdocker'
   containerRegistry: 'miezure240710.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/app/Dockerfile'
 #  tag: '$(Build.BuildId)'
@@ -53,7 +53,7 @@ stages:
     - task: Docker@2
       displayName: Build an image
       inputs:
-        containerRegistry: $(dockerRegistryServiceConnection)
+        containerRegistry: $(acrServiceConnection)
         repository: $(imageRepository)
         command: 'build'
         Dockerfile: $(dockerfilePath)
@@ -71,8 +71,11 @@ stages:
       displayName: "Run trivy scan"
       inputs:
         script: |
-            trivy image --exit-code 0 --severity LOW,MEDIUM $(imageRepository):$(tag)
-#            trivy image --exit-code 1 --severity HIGH,CRITICAL $(imageRepository):$(tag)
+            trivy image --exit-code 0 --severity LOW,MEDIUM $(containerRegistry)$(imageRepository):$(tag)
+#                   trivy image --exit-code 0 --severity LOW,MEDIUM $(containerRegistry)/$(imageRepository):$(tag) > low-med.txt
+#           trivy image --exit-code 1 --severity HIGH,CRITICAL $(containerRegistry)/$(imageRepository):$(tag) > high-critical.txt
+   
+# #            trivy image --exit-code 1 --severity HIGH,CRITICAL $(imageRepository):$(tag)
 
     - task: Docker@2
       inputs:
