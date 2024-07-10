@@ -70,12 +70,12 @@ stages:
       displayName: "Run trivy scan"
       inputs:
         script: |
-            trivy image --exit-code 0 --severity LOW,MEDIUM $(imageName):$(tag)
-            trivy image --exit-code 1 --severity HIGH,CRITICAL $(imageName):$(tag)
+            trivy image --exit-code 0 --severity LOW,MEDIUM $(imageRepository):$(tag)
+            trivy image --exit-code 1 --severity HIGH,CRITICAL $(imageRepository):$(tag)
 
     - task: Docker@2
       inputs:
         containerRegistry: $(dockerRegistryServiceConnection)
-        repository: '$(imageName)'
+        repository: '$(imageRepository)'
         command: 'push'
         tags: '$(tag)'
