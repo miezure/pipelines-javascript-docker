@@ -66,6 +66,7 @@ stages:
             inputs:
               action: createSecret
               namespace : default
+              kubernetesServiceConnection : akstest0_manual
               secretName: $(imagePullSecret)
               dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
 
@@ -74,6 +75,7 @@ stages:
             inputs:
               action: deploy
               namespace : default
+              kubernetesServiceConnection : akstest0_manual
               manifests: |
                 $(Pipeline.Workspace)/manifests/deployment.yml
                 $(Pipeline.Workspace)/manifests/service.yml
@@ -106,6 +108,7 @@ stages:
             displayName: Create imagePullSecret
             inputs:
               action: createSecret
+              kubernetesServiceConnection : akstest0_manual
               secretName: $(imagePullSecret)
               namespace: $(k8sNamespaceForPR)
               dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
@@ -114,6 +117,7 @@ stages:
             displayName: Deploy to the new namespace in the Kubernetes cluster
             inputs:
               action: deploy
+              kubernetesServiceConnection : akstest0_manual
               namespace: $(k8sNamespaceForPR)
               manifests: |
                 $(Pipeline.Workspace)/manifests/deployment.yml
